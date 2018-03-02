@@ -1,0 +1,134 @@
+swagger: "2.0"
+info:
+  description: "The API provides automation for REST endpoints."
+
+  version: "1.0.0"
+  title: "Automation API"
+  termsOfService: "http://www.globalblue.com/customer-services/terms-conditions/"
+  contact:
+    name: ""
+    email: "a@a.c"
+    url: "http://q.com"
+host: 127.0.0.1:8082
+basePath: /automation/api/v1
+tags:
+- name: "automation"
+  description: "Automation Operations"
+schemes:
+  - http
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+paths:
+  /addTest:
+    post:
+      tags:
+      - "automation"
+      summary: "Create a new Test"
+      description: "Create a new Test."
+      operationId: "createTest"
+      parameters:
+        - name: "Test Details"
+          in: "body"
+          description: "Details of the test"
+          required: true
+          schema:
+            $ref: '#/definitions/TestDetails'
+      responses:
+        201:
+          description: "Created"
+          schema:
+            $ref: '#/definitions/TestResponse'
+        400:
+          description: "Invalid Parameters"
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: "Not Found"
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  TestDetails:
+    description: "Test details"
+    type: "object"
+    required:
+      - "baseUri"
+      - "port"
+      - "relativeUri"
+      - "httpMethod"
+      - "testValidatorForResult"
+      - "expectedHttpStatus"
+    properties:
+      testName:
+        description: "Name of the test"
+        type: "string"
+      baseUri:
+        description: "Base URI, e.g. http://127.0.0.1"
+        type: "string"
+        format: "url"
+      port:
+        description: "Port, e.g. 8080"
+        type: "integer"
+      relativeUri:
+        description: "Relative URI, e.g. /{pathParam1}/path/{pathParam2}?queryParam1=valQueryParam1&queryParam2=valQueryParam2"
+        type: "string"
+        format: "url"
+      httpMethod:
+        description: "HttpMethod as String, e.g. one of OPTIONS, GET, POST, PUT, DELETE"
+        type: "string"
+      body:
+        description: "Body of the request, in case the request is one of POST, PUT"
+        type: "string"
+      requestHeaders:
+        description: "CSV String Key-Value pairs"
+        type: "object"
+      testValidatorForResult:
+        description: "Test Validator(JSON Schema Validator or other kind of validator, depending on Content-Type of the response) for validating the response"
+        type: "string"
+      expectedHttpStatus:
+        description: "Expected Http Status for the response"
+        type: "integer"
+  TestResponse:
+      description: "Test Response"
+      type: "object"
+      properties:
+        id:
+          description: "Id of the test"
+          type: "integer"
+        testDetails:
+          $ref: "#/definitions/TestDetails"
+  Error:
+    type: "object"
+    required:
+      - name
+      - status
+      - internalCode
+      - shortMessage
+    properties:
+      name:
+        description: "Automation internal error name"
+        type: "string"
+        example: "ERROR_NAME"
+      status:
+        description: "HTTP status code of the error response"
+        type: "integer"
+        format: "int32"
+        example: "000"
+      internalCode:
+        description: "Automation internal error code"
+        type: "integer"
+        format: "int32"
+        example: "0000"
+      shortMessage:
+        description: "Short error message"
+        type: "string"
+        example: "This is a short error message"
+      detailedMessage:
+        description: "Detailed error message"
+        type: "string"
+        example: "This is a detailed error message"

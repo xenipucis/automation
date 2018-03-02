@@ -1,0 +1,106 @@
+errors:
+  generic:
+    INTERNAL_SERVER_ERROR:
+      internalCode: 1
+      httpCode: 500
+      shortDescription: Internal Server Error
+      moreInformation: Please try again later.
+    BAD_REQUEST_ERROR:
+      internalCode: 2
+      httpCode: 400
+      shortDescription: Bad Request Error
+      moreInformation: Please try again later.
+  custom:
+    TEST_NAME_NOT_BLANK_ERROR:
+      internalCode: 1000
+      httpCode: 400
+      shortDescription: TestName should not be blank
+      moreInformation: TestName field of TestDetails object should not be blank.
+    TEST_NAME_LENGTH_ERROR:
+      internalCode: 1001
+      httpCode: 400
+      shortDescription: TestName field length constraint not satisfied
+      moreInformation: TestName field should have a length between 3 and 100 characters.
+    BASE_URI_NOT_BLANK_ERROR:
+      internalCode: 1002
+      httpCode: 400
+      shortDescription: BaseUri should not be blank
+      moreInformation: BaseUri field of TestDetails object should not be blank.
+    BASE_URI_LENGTH_ERROR:
+      internalCode: 1003
+      httpCode: 400
+      shortDescription: BaseUri field length constraint not satisfied
+      moreInformation: BaseUri field of TestDetails object should have a length between 6 and 100 characters.
+    BASE_URI_PATTERN_ERROR:
+      internalCode: 1004
+      httpCode: 400
+      shortDescription: BaseUri field pattern constraint not satisfied
+      moreInformation: >
+        BaseUri field of TestDetails object should be a valid URL. Supported schemes: [http, https].
+        Examples:
+         - http://www.something.com
+         - https://otherthing.info
+    PORT_MIN_VALUE_ERROR_KEY:
+      internalCode: 1005
+      httpCode: 400
+      shortDescription: Port min value constraint not satisfied
+      moreInformation: The minimum value of Port field of TestDetails object should be greater than or equal to 0.
+    PORT_MAX_VALUE_ERROR_KEY:
+      internalCode: 1006
+      httpCode: 400
+      shortDescription: Port max value constraint not satisfied
+      moreInformation: The maximum value of Port field of TestDetails object should be lower than or equal to 65535.
+    RELATIVE_URI_PATTERN_ERROR:
+      internalCode: 1007
+      httpCode: 400
+      shortDescription: RelativeUri field pattern constraint not satisfied
+      moreInformation: >
+        RelativeUri field of TestDetails object should be a valid subpath.
+        Examples:
+          - s/o/m/e/path
+          - pa/th?q=23&t=14
+    HTTP_METHOD_NOT_SUPPORTED_ERROR_KEY:
+      internalCode: 1008
+      httpCode: 400
+      shortDescription: HttpMethod field is not supported
+      moreInformation: HttpMethod field is not yet supported. Supported httpMethods are: [OPTIONS, GET, POST, PUT, DELETE]
+    HTTP_BODY_NOT_SUPPORTED_ERROR:
+      internalCode: 1009
+      httpCode: 400
+      shortDescription: Body field not supported for this HttpMethod field
+      moreInformation: When HttpMethod field is one of [OPTIONS, GET, DELETE], body is not supported.
+    HTTP_METHOD_NOT_NULL_ERROR:
+      internalCode: 1010
+      httpCode: 400
+      shortDescription: HttpMethod field should not be null
+      moreInformation: HttpMethod field of TestDetails object should not be null.
+    TEST_VALIDATOR_NOT_BLANK_ERROR:
+      internalCode: 1011
+      httpCode: 400
+      shortDescription: TestValidator field should not be blank
+      moreInformation: TestValidator field of TestDetails object should not be blank.
+    HTTP_STATUS_MIN_VALUE_ERROR:
+      internalCode: 1012
+      httpCode: 400
+      shortDescription: HttpStatus field min value constraint not satisfied
+      moreInformation: The minimum value of HttpStatus field of TestDetails object should be greater than or equal to 100.
+    HTTP_STATUS_MAX_VALUE_ERROR:
+      internalCode: 1013
+      httpCode: 400
+      shortDescription: HttpStatus field max value constraint not satisfied
+      moreInformation: The maximum value of HttpStatus field of TestDetails object should be lower than 600.
+    RELATIVE_URI_MAX_LENGTH_ERROR:
+      internalCode: 1014
+      httpCode: 400
+      shortDescription: RelativeUri field max length constraint not satisfied
+      moreInformation: The maximum length of RelativeUri field of TestDetails object should be lower than or equal to 100.
+    BODY_MAX_LENGTH_ERROR:
+      internalCode: 1015
+      httpCode: 400
+      shortDescription: Body field max length constraint not satisfied
+      moreInformation: The maximum length of Body field of TestDetails object should be lower than or equal to 2500.
+    TEST_VALIDATOR_MAX_LENGTH_ERROR:
+      internalCode: 1016
+      httpCode: 400
+      shortDescription: TestValidator field max length constraint not satisfied
+      moreInformation: The maximum length of TestValidator field of TestDetails object should be lower than or equal to 2500.
